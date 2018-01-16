@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Meetup Movies</string>
+    <string name="recyclerview_item_title">Title</string>
+    <string name="recyclerview_item_overview">Overview</string>
+    <string name="recyclerview_item_vote_average">Vote average</string>
+    <string name="recyclerview_item_release_date">Release date</string>
+</resources>
