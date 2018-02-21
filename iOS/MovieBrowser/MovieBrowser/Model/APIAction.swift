@@ -13,8 +13,3 @@ enum ApiAction: String {
     case reviews
     case genres
 }
-
-func printMyEnum() {
-    let action = ApiAction.genres
-    let stringValue = action.rawValue
-}
