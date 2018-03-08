@@ -50,14 +50,12 @@ class SearchViewController: UIViewController {
                 self.movies = movieResults
             case .error(let error):
                 print("Error encountered: \(error)")
-                
             }
         }
     }
 }
 
 extension SearchViewController: UITableViewDataSource {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }

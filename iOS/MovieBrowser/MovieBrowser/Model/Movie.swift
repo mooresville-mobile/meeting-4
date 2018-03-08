@@ -9,7 +9,6 @@
 import Foundation
 
 struct Movie: Codable {
-    
     let title: String
     let voteAverage: Double
     let overview: String
