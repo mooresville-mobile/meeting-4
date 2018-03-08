@@ -14,7 +14,8 @@ import java.util.Locale;
 class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
 
     private List<Movie> mMovies;
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy");
+
     MovieAdapter(List<Movie> movies) {
         mMovies = movies;
     }
@@ -31,6 +32,7 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieHolder> {
     @Override
     public void onBindViewHolder(MovieAdapter.MovieHolder holder, int position) {
         final Movie movie = mMovies.get(position);
+
         holder.mTitleTextView.setText(movie.getTitle());
         holder.mVoteAverageTextView.setText(getRating(movie));
         holder.mReleaseDateTextView.setText(movie.getReleaseDate());

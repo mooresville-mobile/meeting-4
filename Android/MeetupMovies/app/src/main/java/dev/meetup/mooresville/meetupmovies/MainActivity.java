@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
     public static final String API_KEY = "99651ffbdb70f6a2d891f47ea9928677";
-    public static final String FROZEN = "frozen";
+    public static final String FROZEN = "coco";
     public static final String PAGE = "1";
     public static final boolean INCLUDE_ADULT = false;
 
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 4);
         recyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new MovieAdapter(new ArrayList<Movie>());
@@ -70,7 +71,11 @@ public class MainActivity extends AppCompatActivity {
     private boolean isNetworkConnected() {
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        NetworkInfo networkInfo = null;
+        if (connMgr != null) {
+            networkInfo = connMgr.getActiveNetworkInfo();
+        }
 
         return networkInfo != null && networkInfo.isConnected();
     }
@@ -138,7 +143,8 @@ public class MainActivity extends AppCompatActivity {
     private void showDownloadError(Throwable throwable) {
         new AlertDialog.Builder(this)
                 .setTitle("Download Error")
-                .setMessage("We had a problem getting your list of movies.")
+                .setMessage("We had a problem getting your list of movies: " +
+                        throwable.getLocalizedMessage())
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                     }
